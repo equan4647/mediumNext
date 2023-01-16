@@ -13,6 +13,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <Banner/>
+      {/* posts */}
     </div>
   );
 };
