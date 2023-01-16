@@ -4,7 +4,12 @@ import Image from "next/image";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 
-const Home: NextPage = () => {
+interface Props {
+  data? : any;
+}
+
+const Home: NextPage = ({ data }: Props) => {
+  console.log('data', data)
   return (
     <div className="flex-col justify-between p-5 max-w-7xl mx-auto">
       <Head>
@@ -12,10 +17,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Banner/>
-      {/* posts */}
+      <Banner />
+      {/* pposta */}
     </div>
   );
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
+  const data = await res.json()
+  return {
+    props: {
+      data
+    },
+  };
+};
